@@ -1,10 +1,14 @@
 package com.mphasis.RealEstateManagementSystem.entity;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,6 +42,10 @@ public class Apartment {
 	String authorityApproval;
 	@Column(length = 50)
 	String balconies;
+	@ElementCollection
+	List<Integer> viwedBy=new ArrayList<>();
+	@ElementCollection
+	List<Integer> favFor=new ArrayList<>();
 	@ManyToOne(cascade = CascadeType.ALL)
 	Seller seller;
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -45,6 +53,18 @@ public class Apartment {
 	Buyer buyer;
 	@OneToOne(cascade = CascadeType.ALL)
 	CommonPropertyDetails commPropDetails;
+	
+
+
+	@Override
+	public String toString() {
+		return "Apartment [apartmentId=" + apartmentId + ", apartmentName=" + apartmentName + ", baths=" + baths
+				+ ", type=" + type + ", floorNo=" + floorNo + ", noOfLifts=" + noOfLifts + ", furnishedStatus="
+				+ furnishedStatus + ", ageOfConstruction=" + ageOfConstruction + ", waterAvailability="
+				+ waterAvailability + ", statusOfElectricity=" + statusOfElectricity + ", authorityApproval="
+				+ authorityApproval + ", balconies=" + balconies + ", viwedBy=" + viwedBy + ", favFor=" + favFor
+				+ ", seller=" + seller + ", buyer=" + buyer + ", commPropDetails=" + commPropDetails + "]";
+	}
 
 
 	public Apartment() {
@@ -52,6 +72,26 @@ public class Apartment {
 	}
 	
 	
+	public List<Integer> getViwedBy() {
+		return viwedBy;
+	}
+
+
+	public void setViwedBy(List<Integer> viwedBy) {
+		this.viwedBy = viwedBy;
+	}
+
+
+	public List<Integer> getFavFor() {
+		return favFor;
+	}
+
+
+	public void setFavFor(List<Integer> favFor) {
+		this.favFor = favFor;
+	}
+
+
 	public int getApartmentId() {
 		return apartmentId;
 	}

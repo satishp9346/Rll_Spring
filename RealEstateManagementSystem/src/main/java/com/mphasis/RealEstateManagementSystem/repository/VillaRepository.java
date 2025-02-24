@@ -17,5 +17,8 @@ public interface VillaRepository extends JpaRepository<Villa, Integer> {
 	
 	@Query("FROM Villa v WHERE v.commPropDetails.address.city LIKE %:city%")
 	List<Villa> searchPropertyByCity(@Param("city") String city);
-
+	
+	@Query("SELECT a FROM Villa a WHERE a.commPropDetails.soldStatus = 'unsold'")
+	List<Villa> getUnsoldVillas();
+	
 }

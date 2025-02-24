@@ -21,8 +21,8 @@ public class Seller{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int sellerId;
 	@OneToOne(cascade = CascadeType.ALL)
-	UserCommonDetails ucd;
-	@ManyToOne(cascade = CascadeType.ALL)
+	UserCommonDetails userCommonDetails;
+	@ManyToOne
 	PropertyManager property_manager;
 	@OneToMany(mappedBy = "seller")
 	@JsonIgnore
@@ -36,11 +36,12 @@ public class Seller{
 	@OneToOne(cascade = CascadeType.ALL)
 	User user;
 
-	public Seller(int sellerId, UserCommonDetails ucd, PropertyManager property_manager, List<Plots> poltsList,
-			List<Apartment> aprtList, List<Villa> indList, User user) {
+	
+	public Seller(int sellerId, UserCommonDetails userCommonDetails, PropertyManager property_manager,
+			List<Plots> poltsList, List<Apartment> aprtList, List<Villa> indList, User user) {
 		super();
 		this.sellerId = sellerId;
-		this.ucd = ucd;
+		this.userCommonDetails = userCommonDetails;
 		this.property_manager = property_manager;
 		this.poltsList = poltsList;
 		this.aprtList = aprtList;
@@ -62,11 +63,12 @@ public class Seller{
 	public void setSellerId(int sellerId) {
 		this.sellerId = sellerId;
 	}
-	public UserCommonDetails getUcd() {
-		return ucd;
+
+	public UserCommonDetails getUserCommonDetails() {
+		return userCommonDetails;
 	}
-	public void setUcd(UserCommonDetails ucd) {
-		this.ucd = ucd;
+	public void setUserCommonDetails(UserCommonDetails userCommonDetails) {
+		this.userCommonDetails = userCommonDetails;
 	}
 	public PropertyManager getProperty_manager() {
 		return property_manager;
@@ -94,10 +96,11 @@ public class Seller{
 	}
 	@Override
 	public String toString() {
-		return "Seller [sellerId=" + sellerId + ", ucd=" + ucd + ", property_manager=" + property_manager
-				+ ", poltsList=" + poltsList + ", aprtList=" + aprtList + ", indList=" + indList + ", user=" + user
-				+ "]";
+		return "Seller [sellerId=" + sellerId + ", userCommonDetails=" + userCommonDetails + ", property_manager="
+				+ property_manager + ", poltsList=" + poltsList + ", aprtList=" + aprtList + ", indList=" + indList
+				+ ", user=" + user + "]";
 	}
+	
 	
 	
 	

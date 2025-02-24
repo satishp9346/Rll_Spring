@@ -18,5 +18,7 @@ public interface PlotsRepository extends JpaRepository<Plots, Integer> {
 	@Query("FROM Plots p WHERE p.commPropDetails.address.city LIKE %:city%")
 	List<Plots> searchPropertyByCity(@Param("city") String city);
 
+	@Query("SELECT a FROM Plots a WHERE a.commPropDetails.soldStatus = 'unsold'")
+	List<Plots> getUnsoldPlots();
 	
 }

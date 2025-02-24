@@ -38,5 +38,11 @@ public class SellerDTO {
     public void setAddress(String address) {
         this.address = address;
     }
+
+	@Override
+	public String toString() {
+		return "SellerDTO [name=" + name + ", contact=" + contact + ", email=" + email + ", address=" + address + "]";
+	}
+    
 }
 

@@ -43,5 +43,6 @@ public class BuyerDTO {
 	public String toString() {
 		return "BuyerDTO [name=" + name + ", contact=" + contact + ", email=" + email + ", address=" + address + "]";
 	}
+	
     
 }

@@ -1,7 +1,11 @@
 package com.mphasis.RealEstateManagementSystem.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +25,10 @@ public class Plots {
 	int floorsAllowed;
 	int noOfOpenSides;
 	int boundaryWalls;
+	@ElementCollection
+	List<Integer> viwedBy=new ArrayList<>();
+	@ElementCollection
+	List<Integer> favFor=new ArrayList<>();
 	@ManyToOne(cascade = CascadeType.ALL)
 	Seller seller;
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -31,6 +39,31 @@ public class Plots {
 	public Plots() {
 		super();
 	}	
+	
+	@Override
+	public String toString() {
+		return "Plots [plotId=" + plotId + ", authorityApproval=" + authorityApproval + ", floorsAllowed="
+				+ floorsAllowed + ", noOfOpenSides=" + noOfOpenSides + ", boundaryWalls=" + boundaryWalls + ", viwedBy="
+				+ viwedBy + ", favFor=" + favFor + ", seller=" + seller + ", buyer=" + buyer + ", commPropDetails="
+				+ commPropDetails + "]";
+	}
+
+	public List<Integer> getViwedBy() {
+		return viwedBy;
+	}
+
+	public void setViwedBy(List<Integer> viwedBy) {
+		this.viwedBy = viwedBy;
+	}
+
+	public List<Integer> getFavFor() {
+		return favFor;
+	}
+
+	public void setFavFor(List<Integer> favFor) {
+		this.favFor = favFor;
+	}
+
 	public Seller getSeller() {
 		return seller;
 	}

@@ -35,4 +35,10 @@ public class UserRequest {
     public void setUserCommonDetails(UserCommonDetails userCommonDetails) {
         this.userCommonDetails = userCommonDetails;
     }
+
+	@Override
+	public String toString() {
+		return "UserRequest [user=" + user + ", userCommonDetails=" + userCommonDetails + "]";
+	}
+    
 }

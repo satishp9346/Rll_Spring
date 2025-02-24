@@ -1,7 +1,11 @@
 package com.mphasis.RealEstateManagementSystem.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +32,10 @@ public class Villa {
 	@Column(length = 50)
 	String furnishedStatus;//furnished/un furnished
 	int balconies;
+	@ElementCollection
+	List<Integer> viwedBy=new ArrayList<>();
+	@ElementCollection
+	List<Integer> favFor=new ArrayList<>();
 	@ManyToOne(cascade = CascadeType.ALL)
 	Seller seller;
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -35,6 +43,15 @@ public class Villa {
 	@OneToOne(cascade = CascadeType.ALL)
 	CommonPropertyDetails commPropDetails;
 
+
+	@Override
+	public String toString() {
+		return "Villa [idividualId=" + idividualId + ", type=" + type + ", baths=" + baths + ", ageOfConstruction="
+				+ ageOfConstruction + ", waterAvailability=" + waterAvailability + ", statusOfElectricity="
+				+ statusOfElectricity + ", furnishedStatus=" + furnishedStatus + ", balconies=" + balconies
+				+ ", viwedBy=" + viwedBy + ", favFor=" + favFor + ", seller=" + seller + ", buyer=" + buyer
+				+ ", commPropDetails=" + commPropDetails + "]";
+	}
 
 	public Villa() {
 		super();

@@ -51,13 +51,13 @@ public class UserService {
                 break;
             case "SELLER":
                 Seller seller = new Seller();
-                seller.setUcd(userCommonDetails);
+                seller.setUserCommonDetails(userCommonDetails);
                 seller.setUser(user);
                 sellerRepo.save(seller);
                 break;
             case "BUYER":
                 Buyer buyer = new Buyer();
-                buyer.setUcd(userCommonDetails);
+                buyer.setUserCommonDetails(userCommonDetails);
                 buyer.setUser(user);
                 buyerRepo.save(buyer);
                 break;
@@ -91,7 +91,7 @@ public class UserService {
                 Optional<Seller> optionalSeller = sellerRepo.findByUserId(user.getUserId());
                 if (optionalSeller.isPresent()) {
                     Seller seller = optionalSeller.get();
-                    seller.setUcd(userCommonDetails);
+                    seller.setUserCommonDetails(userCommonDetails);
                     seller.setUser(user);
                     sellerRepo.save(seller);
                 } else {
@@ -103,7 +103,7 @@ public class UserService {
                 Optional<Buyer> optionalBuyer = buyerRepo.findByUserId(user.getUserId());
                 if (optionalBuyer.isPresent()) {
                     Buyer buyer = optionalBuyer.get();
-                    buyer.setUcd(userCommonDetails);
+                    buyer.setUserCommonDetails(userCommonDetails);
                     buyer.setUser(user);
                     buyerRepo.save(buyer);
                 } else {

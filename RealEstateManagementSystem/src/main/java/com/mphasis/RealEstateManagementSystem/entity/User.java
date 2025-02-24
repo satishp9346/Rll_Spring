@@ -1,5 +1,7 @@
 package com.mphasis.RealEstateManagementSystem.entity;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -7,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -25,9 +28,9 @@ public class User {
 	@OneToOne(mappedBy = "user")
 	@JsonIgnore
 	Admin admin;
-	@OneToOne(mappedBy = "user")
+	@OneToMany(mappedBy = "user")
 	@JsonIgnore
-	Seller seller;
+	List<Seller> seller;
 	@OneToOne(mappedBy = "user")
 	@JsonIgnore
 	PropertyManager property_manager;
@@ -36,31 +39,27 @@ public class User {
 	Buyer buyer;
 	
 
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", email=" + email + ", password=" + password + ", role=" + role + ", admin="
+				+ admin + ", seller=" + seller + ", property_manager=" + property_manager + ", buyer=" + buyer + "]";
+	}
+
 	public User() {
 		super();
 	}
-	public User(int userId, String email, String password, String role, Admin admin, Seller seller,
-			PropertyManager property_manager, Buyer buyer) {
-		super();
-		this.userId = userId;
-		this.email = email;
-		this.password = password;
-		this.role = role;
-		this.admin = admin;
-		this.seller = seller;
-		this.property_manager = property_manager;
-		this.buyer = buyer;
-	}
+
 	public Admin getAdmin() {
 		return admin;
 	}
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-	public Seller getSeller() {
+	
+	public List<Seller> getSeller() {
 		return seller;
 	}
-	public void setSeller(Seller seller) {
+	public void setSeller(List<Seller> seller) {
 		this.seller = seller;
 	}
 	public PropertyManager getProperty_manager() {
@@ -98,11 +97,6 @@ public class User {
 	}
 	public void setRole(String role) {
 		this.role = role;
-	}
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", email=" + email + ", password=" + password + ", role=" + role + ", admin="
-				+ admin + ", seller=" + seller + ", property_manager=" + property_manager + ", buyer=" + buyer + "]";
 	}
 	
 

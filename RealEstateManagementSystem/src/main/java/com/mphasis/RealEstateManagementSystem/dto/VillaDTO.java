@@ -1,6 +1,8 @@
 package com.mphasis.RealEstateManagementSystem.dto;
 
+import com.mphasis.RealEstateManagementSystem.entity.Buyer;
 import com.mphasis.RealEstateManagementSystem.entity.CommonPropertyDetails;
+import com.mphasis.RealEstateManagementSystem.entity.PropertyManager;
 import com.mphasis.RealEstateManagementSystem.entity.Seller;
 
 
@@ -12,8 +14,31 @@ public class VillaDTO {
 	String statusOfElectricity;
 	String furnishedStatus;//furnished/un furnished
 	int balconies;
+//	private CommonPropertyDetailsDTO commonPropertyDetails;
 	private CommonPropertyDetails commonPropertyDetails;
     private Seller seller;
+    private PropertyManager propertyManager;
+    private Buyer buyer;
+    
+    
+	public void setCommonPropertyDetails(CommonPropertyDetails commonPropertyDetails) {
+		this.commonPropertyDetails = commonPropertyDetails;
+	}
+	public PropertyManager getPropertyManager() {
+		return propertyManager;
+	}
+	public CommonPropertyDetails getCommonPropertyDetails() {
+		return commonPropertyDetails;
+	}
+	public void setPropertyManager(PropertyManager propertyManager) {
+		this.propertyManager = propertyManager;
+	}
+	public Buyer getBuyer() {
+		return buyer;
+	}
+	public void setBuyer(Buyer buyer) {
+		this.buyer = buyer;
+	}
 	public String getType() {
 		return type;
 	}
@@ -57,17 +82,25 @@ public class VillaDTO {
 		this.balconies = balconies;
 	}
 	
-	public CommonPropertyDetails getCommonPropertyDetails() {
-		return commonPropertyDetails;
-	}
-	public void setCommonPropertyDetails(CommonPropertyDetails commonPropertyDetails) {
-		this.commonPropertyDetails = commonPropertyDetails;
-	}
+//	public CommonPropertyDetailsDTO getCommonPropertyDetails() {
+//		return commonPropertyDetails;
+//	}
+//	public void setCommonPropertyDetails(CommonPropertyDetailsDTO commonPropertyDetails) {
+//		this.commonPropertyDetails = commonPropertyDetails;
+//	}
 	public Seller getSeller() {
 		return seller;
 	}
 	public void setSeller(Seller seller) {
 		this.seller = seller;
+	}
+	@Override
+	public String toString() {
+		return "VillaDTO [type=" + type + ", baths=" + baths + ", ageOfConstruction=" + ageOfConstruction
+				+ ", waterAvailability=" + waterAvailability + ", statusOfElectricity=" + statusOfElectricity
+				+ ", furnishedStatus=" + furnishedStatus + ", balconies=" + balconies + ", commonPropertyDetails="
+				+ commonPropertyDetails + ", seller=" + seller + ", propertyManager=" + propertyManager + ", buyer="
+				+ buyer + "]";
 	}
     
 }

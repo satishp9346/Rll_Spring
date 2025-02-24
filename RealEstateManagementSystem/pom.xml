@@ -71,6 +71,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!--<dependency>
+		    <groupId>javax.imageio</groupId>
+		    <artifactId>imageio</artifactId>
+		    <version>1.0</version>
+		</dependency>-->
+		<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-imaging</artifactId>
+    <version>1.0-alpha3</version>
+</dependency>
 	</dependencies>
 
 	<build>

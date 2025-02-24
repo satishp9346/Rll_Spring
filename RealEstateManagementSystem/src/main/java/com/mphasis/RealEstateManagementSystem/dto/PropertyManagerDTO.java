@@ -29,5 +29,11 @@ public class PropertyManagerDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
+	@Override
+	public String toString() {
+		return "PropertyManagerDTO [name=" + name + ", contact=" + contact + ", email=" + email + "]";
+	}
+    
 }
 

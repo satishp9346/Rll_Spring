@@ -29,17 +29,15 @@ public class UserCommonDetails {
 	public UserCommonDetails() {
 		super();
 	}
-	public UserCommonDetails(int userComId, String firstName, String lastName, String gender, int age, String mobileNo,
-			Address address) {
-		super();
-		this.userComId = userComId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.gender = gender;
-		this.age = age;
-		this.mobileNo = mobileNo;
-		this.address = address;
+
+
+	@Override
+	public String toString() {
+		return "UserCommonDetails [userComId=" + userComId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", gender=" + gender + ", age=" + age + ", mobileNo=" + mobileNo + ", address=" + address + "]";
 	}
+
+
 	public int getUserComId() {
 		return userComId;
 	}
@@ -82,11 +80,7 @@ public class UserCommonDetails {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	@Override
-	public String toString() {
-		return "UserCommonDetails [userComId=" + userComId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", gender=" + gender + ", age=" + age + ", mobileNo=" + mobileNo + ", address=" + address + "]";
-	}
+	
 	
 	
 

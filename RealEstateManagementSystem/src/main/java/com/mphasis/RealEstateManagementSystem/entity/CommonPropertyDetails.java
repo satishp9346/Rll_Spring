@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -21,7 +22,7 @@ public class CommonPropertyDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int cpdId;
-	
+
 	double carpetArea;
 	@Column(length = 50)
 	String facing;
@@ -40,23 +41,34 @@ public class CommonPropertyDetails {
 	String developer;
 	@Column(length = 50)
 	String overlooking;
+	@Column(length = 20)
+	String soldStatus;
+//	@OneToMany(cascade = CascadeType.ALL)
+//    List<ImageData> images;
+	@ElementCollection
+	List<String> images;
+	@OneToOne(cascade = CascadeType.ALL)
+	Address address;
+
+	public CommonPropertyDetails() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "CommonPropertyDetails [cpdId=" + cpdId + ", carpetArea=" + carpetArea + ", facing=" + facing
+				+ ", price=" + price + ", description=" + description + ", status=" + status + ", registrationCharges="
+				+ registrationCharges + ", bookingAmount=" + bookingAmount + ", transactionType=" + transactionType
+				+ ", developer=" + developer + ", overlooking=" + overlooking + ", soldStatus=" + soldStatus
+				+ ", images=" + images + ", address=" + address + "]";
+	}
+
 	public String getSoldStatus() {
 		return soldStatus;
 	}
 
 	public void setSoldStatus(String soldStatus) {
 		this.soldStatus = soldStatus;
-	}
-
-	@Column(length = 20)
-	String soldStatus;
-	@ElementCollection
-	List<String> images;
-	@OneToOne(cascade = CascadeType.ALL)
-	Address address;
-	
-	public CommonPropertyDetails() {
-		super();
 	}
 
 	public int getCpdId() {
@@ -147,6 +159,12 @@ public class CommonPropertyDetails {
 		this.images = images;
 	}
 
+	// public List<ImageData> getImages() {
+//		return images;
+//	}
+//	public void setImages(List<ImageData> images) {
+//		this.images = images;
+//	}
 	public Address getAddress() {
 		return address;
 	}
@@ -162,10 +180,5 @@ public class CommonPropertyDetails {
 	public void setDeveloper(String developer) {
 		this.developer = developer;
 	}
-
-
-
-	
-	
 
 }

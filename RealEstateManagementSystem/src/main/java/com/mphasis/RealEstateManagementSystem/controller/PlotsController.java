@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,18 +13,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mphasis.RealEstateManagementSystem.dto.PlotDTO;
 import com.mphasis.RealEstateManagementSystem.entity.Apartment;
 import com.mphasis.RealEstateManagementSystem.entity.Plots;
 import com.mphasis.RealEstateManagementSystem.service.PlotsService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/plots")
 public class PlotsController {
 	@Autowired
 	PlotsService plotServ;
+
+//    @PostMapping("/add")
+//    public ResponseEntity<?> addPlots(@RequestPart("plot") PlotDTO plotDTO, 
+//                                      @RequestPart("commonPropertyDetails.images") List<MultipartFile> imageFiles) {
+//        plotDTO.getCommonPropertyDetails().setImages(imageFiles);
+//        Plots newPlot = plotServ.addPlots(plotDTO);
+//        if (newPlot != null) {
+//            return new ResponseEntity<Plots>(newPlot, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<String>("Sorry, Plot could not be added.", HttpStatus.NOT_FOUND);
+//        }
+//    }
 	@PostMapping("/add")
 	public ResponseEntity<?> addPlots(@RequestBody PlotDTO plot) {
 		if(plotServ.addPlots(plot)!=null)
@@ -49,8 +65,16 @@ public class PlotsController {
 			return new ResponseEntity<String>("Sorry Plots does not Exists.",HttpStatus.NOT_FOUND);
 	}
 	@GetMapping("")
-	public ResponseEntity<?> getAllPlotss() {
+	public ResponseEntity<?> getAllPlots() {
 		List<Plots> plotList=plotServ.getAllPlots();
+		if(!plotList.isEmpty())
+			return new ResponseEntity<List<Plots>>(plotList,HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("Sorry No Plotss Exists.",HttpStatus.NOT_FOUND);
+	}
+	@GetMapping("/unsold")
+	public ResponseEntity<?> getUnsoldPlots() {
+		List<Plots> plotList=plotServ.getUnsoldPlots();
 		if(!plotList.isEmpty())
 			return new ResponseEntity<List<Plots>>(plotList,HttpStatus.OK);
 		else
