@@ -40,6 +40,27 @@ public class PlotsService {
 		return null;
 	}
 	@Transactional
+    public void addBuyerToFavFor(int plotId, int buyerId) {
+        Plots plot = plotsRepo.findById(plotId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid plots ID"));
+        plot.getFavFor().add(buyerId);
+        plotsRepo.save(plot);
+    }
+   public List<Plots> getVillaByBuyerIdInFavFor(int buyerId) {
+        return plotsRepo.getVillaByBuyerIdInFavFor(buyerId);
+    }
+   public List<Plots> getPlotsByBuyerIdInViewedBy(int buyerId) {
+       return plotsRepo.getPlotsByBuyerIdInViewedBy(buyerId);
+   }
+
+    @Transactional
+    public void addBuyerToViewedBy(int plotId, int buyerId) {
+        Plots plot = plotsRepo.findById(plotId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid plots ID"));
+        plot.getViwedBy().add(buyerId);
+        plotsRepo.save(plot);
+    }
+	@Transactional
 	public Plots addPlots(PlotDTO plot) {
 		System.out.println(plot);
 		PropertyManager propertyManager = plot.getPropertyManager();

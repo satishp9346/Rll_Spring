@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mphasis.RealEstateManagementSystem.dto.UserRequest;
 import com.mphasis.RealEstateManagementSystem.entity.Buyer;
 import com.mphasis.RealEstateManagementSystem.service.BuyerService;
 
@@ -25,6 +27,14 @@ import com.mphasis.RealEstateManagementSystem.service.BuyerService;
 public class BuyerController {
 	@Autowired
 	BuyerService buyerServ;
+//	@GetMapping("/by_email")
+//	public ResponseEntity<?> getBuyerByEmail(@RequestParam("email") String email) {
+//		Buyer buyer=buyerServ.getBuyerByEmail(email);
+//		if(buyer!=null)
+//			return new ResponseEntity<UserRequest>(buyer,HttpStatus.OK);
+//		else
+//			return new ResponseEntity<String>("Sorry User does not Exists.",HttpStatus.NOT_FOUND);
+//	}
 	@PostMapping("/add")
 	public ResponseEntity<?> addBuyer(@RequestBody Buyer buyer) {
 		if(buyerServ.addBuyer(buyer)!=null)

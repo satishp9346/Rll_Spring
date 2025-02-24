@@ -13,4 +13,5 @@ import com.mphasis.RealEstateManagementSystem.entity.Buyer;
 public interface BuyerRepository extends JpaRepository<Buyer, Integer> {
 	@Query("SELECT b FROM Buyer b WHERE b.user.userId = :userId")
     Optional<Buyer> findByUserId(@Param("userId") int userId);
+
 }

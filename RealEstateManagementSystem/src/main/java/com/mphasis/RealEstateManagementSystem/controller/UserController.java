@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mphasis.RealEstateManagementSystem.dto.UserRequest;
-
+import com.mphasis.RealEstateManagementSystem.entity.Buyer;
 import com.mphasis.RealEstateManagementSystem.entity.User;
 import com.mphasis.RealEstateManagementSystem.entity.UserCommonDetails;
 import com.mphasis.RealEstateManagementSystem.service.UserService;
@@ -51,6 +51,17 @@ public class UserController {
 		else
 			return new ResponseEntity<String>("Sorry User does not Exists.",HttpStatus.NOT_FOUND);
 	}
+	
+	@GetMapping("/get_buyer")
+	public ResponseEntity<?> getBuyerByUserId(@RequestParam("userId") int userId) {
+		Buyer buyer=userServ.getBuyerByEmail(userId);
+		if(buyer!=null)
+			return new ResponseEntity<Buyer>(buyer,HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("Sorry User does not Exists.",HttpStatus.NOT_FOUND);
+	}
+	
+	
 //	@PutMapping("/update/{id}")
 //	public ResponseEntity<?> updateUser(@PathVariable("id") int userId, @RequestBody User user) {
 //		if(userServ.getUser(userId).getUserId()==userId) {

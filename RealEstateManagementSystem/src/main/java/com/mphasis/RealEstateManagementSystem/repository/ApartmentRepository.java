@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mphasis.RealEstateManagementSystem.entity.Apartment;
 import com.mphasis.RealEstateManagementSystem.entity.Buyer;
+import com.mphasis.RealEstateManagementSystem.entity.Plots;
 
 @Repository
 public interface ApartmentRepository extends JpaRepository<Apartment, Integer> {
@@ -27,6 +28,23 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Integer> {
 	@Modifying
 	@Query("UPDATE Apartment a SET a.commPropDetails.soldStatus = 'sold', a.buyer = :buyer WHERE a.apartmentId = :apartmentId")
 	int updateApartmentSoldStatusAndBuyer(@Param("apartmentId") int apartmentId, @Param("buyer") Buyer buyer);
-
 	
+	@Query("SELECT v FROM Apartment v WHERE :buyerId MEMBER OF v.favFor")
+    List<Apartment> getVillaByBuyerIdInFavFor(@Param("buyerId") int buyerId);
+	
+	@Query("SELECT v FROM Apartment v WHERE :buyerId MEMBER OF v.viwedBy")
+	List<Apartment> getApartByBuyerIdInViewedBy(@Param("buyerId") int buyerId);
+	
+//	@Modifying
+//	@Query("UPDATE Apartment a SET a.buyerId = :buyerId WHERE a.apartmentId = :apartmentId")
+//	int updateBuyerForApartment(@Param("apartmentId") int apartmentId, @Param("buyerId") int buyerId);
+
+//	@Modifying
+//	@Query("UPDATE Apartment a SET a.favFor = :buyerId WHERE a.apartmentId = :apartmentId")
+//	int addBuyerToFavFor(@Param("apartmentId") int apartmentId, @Param("buyerId") int buyerId);
+//
+//	@Modifying
+//	@Query("UPDATE Apartment a SET a.viwedBy = :buyerId WHERE a.apartmentId = :apartmentId")
+//	int addBuyerToViewedBy(@Param("apartmentId") int apartmentId, @Param("buyerId") int buyerId);
+
 }

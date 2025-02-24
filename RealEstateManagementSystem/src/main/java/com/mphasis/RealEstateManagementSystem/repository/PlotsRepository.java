@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mphasis.RealEstateManagementSystem.entity.Apartment;
 import com.mphasis.RealEstateManagementSystem.entity.Plots;
+import com.mphasis.RealEstateManagementSystem.entity.Villa;
 
 @Repository
 public interface PlotsRepository extends JpaRepository<Plots, Integer> {
@@ -20,5 +21,11 @@ public interface PlotsRepository extends JpaRepository<Plots, Integer> {
 
 	@Query("SELECT a FROM Plots a WHERE a.commPropDetails.soldStatus = 'unsold'")
 	List<Plots> getUnsoldPlots();
+	
+	@Query("SELECT v FROM Plots v WHERE :buyerId MEMBER OF v.favFor")
+    List<Plots> getVillaByBuyerIdInFavFor(@Param("buyerId") int buyerId);
+	
+	@Query("SELECT v FROM Plots v WHERE :buyerId MEMBER OF v.viwedBy")
+	List<Plots> getPlotsByBuyerIdInViewedBy(@Param("buyerId") int buyerId);
 	
 }

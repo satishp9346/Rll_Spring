@@ -4,6 +4,7 @@ package com.mphasis.RealEstateManagementSystem.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.mphasis.RealEstateManagementSystem.dto.UserRequest;
@@ -139,6 +140,14 @@ public class UserService {
             return null;
         }
 //		return userRepo.checkUser(email, pwd);
+	}
+    
+	public Buyer getBuyerByEmail(int userId) {
+		Optional<Buyer> optBuyer= buyerRepo.findByUserId(userId);
+		if(optBuyer.isPresent()) {
+			return optBuyer.get();
+		}
+		return null;
 	}
 //	public List<User> getAllUser(){
 //		return userRepo.findAll();

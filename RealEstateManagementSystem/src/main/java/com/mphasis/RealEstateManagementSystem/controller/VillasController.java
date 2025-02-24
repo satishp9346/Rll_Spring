@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mphasis.RealEstateManagementSystem.dto.VillaDTO;
@@ -33,6 +34,14 @@ public class VillasController {
 		else
 			return new ResponseEntity<String>("Sorry IndividualHouse Id Already Exists.",HttpStatus.NOT_FOUND);
 	}
+	 @GetMapping("/favFor/{buyerId}")
+    public List<Villa> getVillaByBuyerIdInFavFor(@PathVariable int buyerId) {
+        return villaService.getVillaByBuyerIdInFavFor(buyerId);
+    }
+	 @GetMapping("/viewed/{buyerId}")
+	    public List<Villa> getVillaByBuyerIdInViewedBy(@PathVariable int buyerId) {
+	        return villaService.getVillaByBuyerIdInViewedBy(buyerId);
+	    }
 //	 @PostMapping("/add")
 //	    public ResponseEntity<?> addVilla(@RequestPart("villa") VillaDTO villaDTO,
 //	                                      @RequestPart("commonPropertyDetails.images") List<MultipartFile> imageFiles) {
@@ -44,6 +53,17 @@ public class VillasController {
 //	            return new ResponseEntity<String>("Sorry, Villa could not be added.", HttpStatus.NOT_FOUND);
 //	        }
 //	    }
+	@PutMapping("/addToFav")
+    public String addToFav(@RequestParam int idividualId, @RequestParam int buyerId) {
+        villaService.addBuyerToFavFor(idividualId, buyerId);
+        return "Buyer added to favorites successfully.";
+    }
+
+    @PutMapping("/addToViewed")
+    public String addToViewedBy(@RequestParam int idividualId, @RequestParam int buyerId) {
+        villaService.addBuyerToViewedBy(idividualId, buyerId);
+        return "Buyer added to viewed list successfully.";
+    }
 	@GetMapping("/search_by_city")
 	public ResponseEntity<?> searchPropertyByCity(String city) {
 		List<Villa> villaList= villaService.searchPropertyByCity(city);

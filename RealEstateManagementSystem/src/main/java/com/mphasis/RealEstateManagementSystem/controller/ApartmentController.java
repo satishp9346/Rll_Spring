@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mphasis.RealEstateManagementSystem.dto.ApartmentDTO;
 import com.mphasis.RealEstateManagementSystem.entity.Apartment;
 import com.mphasis.RealEstateManagementSystem.entity.Buyer;
+import com.mphasis.RealEstateManagementSystem.entity.Plots;
 import com.mphasis.RealEstateManagementSystem.entity.Villa;
 import com.mphasis.RealEstateManagementSystem.service.ApartmentService;
 
@@ -37,6 +39,45 @@ public class ApartmentController {
 		else
 			return new ResponseEntity<String>("Sorry Apartment Id Already Exists.",HttpStatus.NOT_FOUND);
 	}
+	@PutMapping("/addToFav")
+    public String addToFav(@RequestParam int apartmentId, @RequestParam int buyerId) {
+        aprtServ.addBuyerToFavFor(apartmentId, buyerId);
+        return "Buyer added to favorites successfully.";
+    }
+	@GetMapping("/favFor/{buyerId}")
+    public List<Apartment> getVillaByBuyerIdInFavFor(@PathVariable int buyerId) {
+        return aprtServ.getVillaByBuyerIdInFavFor(buyerId);
+    }
+	@GetMapping("/viewed/{buyerId}")
+    public List<Apartment> getApartByBuyerIdInViewedBy(@PathVariable int buyerId) {
+        return aprtServ.getApartByBuyerIdInViewedBy(buyerId);
+    }
+
+    @PutMapping("/addToViewed")
+    public String addToViewedBy(@RequestParam int apartmentId, @RequestParam int buyerId) {
+        aprtServ.addBuyerToViewedBy(apartmentId, buyerId);
+        return "Buyer added to viewed list successfully.";
+    }
+//	 @PutMapping("/updateBuyer")
+//    public String updateBuyerForApartment(@RequestParam int apartmentId, @RequestParam int buyerId) {
+//        int updatedRows = aprtServ.updateBuyerForApartment(apartmentId, buyerId);
+//        if (updatedRows > 0) {
+//            return "Buyer updated successfully.";
+//        } else {
+//            return "Failed to update buyer.";
+//        }
+//    }
+//	 @PutMapping("/addToFav")
+//	    public String addToFav(@RequestParam int apartmentId, @RequestParam int buyerId) {
+//	        int updatedRows = aprtServ.addBuyerToFavFor(apartmentId, buyerId);
+//	        return updatedRows > 0 ? "Buyer added to favorites successfully." : "Failed to add buyer to favorites.";
+//	    }
+//
+//	    @PutMapping("/addToViewed")
+//	    public String addToViewedBy(@RequestParam int apartmentId, @RequestParam int buyerId) {
+//	        int updatedRows = aprtServ.addBuyerToViewedBy(apartmentId, buyerId);
+//	        return updatedRows > 0 ? "Buyer added to viewed list successfully." : "Failed to add buyer to viewed list.";
+//	    }
 //	 @PostMapping("/add")
 //	    public ResponseEntity<?> addApartment(@RequestPart("apartment") ApartmentDTO apartmentDTO,
 //	                                          @RequestPart("commonPropertyDetailsDTO.images") List<MultipartFile> imageFiles) {

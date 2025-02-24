@@ -35,6 +35,27 @@ public class VillaService {
 		return null;
 	}
 	@Transactional
+    public void addBuyerToFavFor(int idividualId, int buyerId) {
+        Villa villa = villaRepo.findById(idividualId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid villa ID"));
+        villa.getFavFor().add(buyerId);
+        villaRepo.save(villa);
+    }
+
+    @Transactional
+    public void addBuyerToViewedBy(int idividualId, int buyerId) {
+        Villa villa = villaRepo.findById(idividualId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid villa ID"));
+        villa.getViwedBy().add(buyerId);
+        villaRepo.save(villa);
+    }
+    public List<Villa> getVillaByBuyerIdInFavFor(int buyerId) {
+        return villaRepo.getVillaByBuyerIdInFavFor(buyerId);
+    }
+    public List<Villa> getVillaByBuyerIdInViewedBy(int buyerId) {
+        return villaRepo.getVillaByBuyerIdInViewedBy(buyerId);
+    }
+	@Transactional
 	public Villa addVilla(VillaDTO villaDto) {
 		System.out.println(villaDto);
 

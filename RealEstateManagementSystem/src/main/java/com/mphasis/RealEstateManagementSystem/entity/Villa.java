@@ -44,14 +44,6 @@ public class Villa {
 	CommonPropertyDetails commPropDetails;
 
 
-	@Override
-	public String toString() {
-		return "Villa [idividualId=" + idividualId + ", type=" + type + ", baths=" + baths + ", ageOfConstruction="
-				+ ageOfConstruction + ", waterAvailability=" + waterAvailability + ", statusOfElectricity="
-				+ statusOfElectricity + ", furnishedStatus=" + furnishedStatus + ", balconies=" + balconies
-				+ ", viwedBy=" + viwedBy + ", favFor=" + favFor + ", seller=" + seller + ", buyer=" + buyer
-				+ ", commPropDetails=" + commPropDetails + "]";
-	}
 
 	public Villa() {
 		super();
@@ -132,6 +124,31 @@ public class Villa {
 	}
 	public void setFurnishedStatus(String furnishedStatus) {
 		this.furnishedStatus = furnishedStatus;
+	}
+
+	public List<Integer> getViwedBy() {
+		return viwedBy;
+	}
+
+	public void setViwedBy(List<Integer> viwedBy) {
+		this.viwedBy = viwedBy;
+	}
+
+	public List<Integer> getFavFor() {
+		return favFor;
+	}
+
+	public void setFavFor(List<Integer> favFor) {
+		this.favFor = favFor;
+	}
+
+	@Override
+	public String toString() {
+		return "Villa [idividualId=" + idividualId + ", type=" + type + ", baths=" + baths + ", ageOfConstruction="
+				+ ageOfConstruction + ", waterAvailability=" + waterAvailability + ", statusOfElectricity="
+				+ statusOfElectricity + ", furnishedStatus=" + furnishedStatus + ", balconies=" + balconies
+				+ ", viwedBy=" + viwedBy + ", favFor=" + favFor + ", seller=" + seller + ", buyer=" + buyer
+				+ ", commPropDetails=" + commPropDetails + "]";
 	}
 
 	

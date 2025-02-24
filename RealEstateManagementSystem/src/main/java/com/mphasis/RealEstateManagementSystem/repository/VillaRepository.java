@@ -21,4 +21,10 @@ public interface VillaRepository extends JpaRepository<Villa, Integer> {
 	@Query("SELECT a FROM Villa a WHERE a.commPropDetails.soldStatus = 'unsold'")
 	List<Villa> getUnsoldVillas();
 	
+	@Query("SELECT v FROM Villa v WHERE :buyerId MEMBER OF v.favFor")
+    List<Villa> getVillaByBuyerIdInFavFor(@Param("buyerId") int buyerId);
+	
+	@Query("SELECT v FROM Villa v WHERE :buyerId MEMBER OF v.viwedBy")
+	List<Villa> getVillaByBuyerIdInViewedBy(@Param("buyerId") int buyerId);
+	
 }

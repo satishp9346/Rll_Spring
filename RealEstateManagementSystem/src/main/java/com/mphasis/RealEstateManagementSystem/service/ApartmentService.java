@@ -14,6 +14,7 @@ import com.mphasis.RealEstateManagementSystem.entity.Apartment;
 import com.mphasis.RealEstateManagementSystem.entity.Buyer;
 import com.mphasis.RealEstateManagementSystem.entity.CommonPropertyDetails;
 import com.mphasis.RealEstateManagementSystem.entity.ImageData;
+import com.mphasis.RealEstateManagementSystem.entity.Plots;
 import com.mphasis.RealEstateManagementSystem.entity.PropertyManager;
 import com.mphasis.RealEstateManagementSystem.entity.Seller;
 import com.mphasis.RealEstateManagementSystem.entity.User;
@@ -43,6 +44,40 @@ public class ApartmentService {
 		if (apartRepo.existsById(apartmentId))
 			return apartRepo.findById(apartmentId).get();
 		return null;
+	}
+//	 @Transactional
+//	public int updateBuyerForApartment(int apartmentId, int buyerId) {
+//		return apartRepo.updateBuyerForApartment(apartmentId, buyerId);
+//	}
+//	 @Transactional
+//    public int addBuyerToFavFor(int apartmentId, int buyerId) {
+//        return apartRepo.addBuyerToFavFor(apartmentId, buyerId);
+//    }
+//
+//    @Transactional
+//    public int addBuyerToViewedBy(int apartmentId, int buyerId) {
+//        return apartRepo.addBuyerToViewedBy(apartmentId, buyerId);
+//    }
+	@Transactional
+    public void addBuyerToFavFor(int apartmentId, int buyerId) {
+        Apartment apartment = apartRepo.findById(apartmentId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid apartment ID"));
+        apartment.getFavFor().add(buyerId);
+        apartRepo.save(apartment);
+    }
+
+    @Transactional
+    public void addBuyerToViewedBy(int apartmentId, int buyerId) {
+        Apartment apartment = apartRepo.findById(apartmentId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid apartment ID"));
+        apartment.getViwedBy().add(buyerId);
+        apartRepo.save(apartment);
+    }
+    public List<Apartment> getVillaByBuyerIdInFavFor(int buyerId) {
+        return apartRepo.getVillaByBuyerIdInFavFor(buyerId);
+    }
+    public List<Apartment> getApartByBuyerIdInViewedBy(int buyerId) {
+    	return apartRepo.getApartByBuyerIdInViewedBy(buyerId);
 	}
 
 	@Transactional
@@ -134,4 +169,5 @@ public class ApartmentService {
 		return apartRepo.searchPropertyByCity(city);
 	}
 
+	
 }
