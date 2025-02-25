@@ -95,7 +95,9 @@ public class VillaService {
 	public List<Villa> getUnsoldVillas(){
 		return villaRepo.getUnsoldVillas();
 	}
-	
+	public List<Villa> getSoldVillas(int buyerId){
+		return villaRepo.getSoldVillas(buyerId);
+	}
 //	public Villa addVilla(VillaDTO villaDTO) {
 //        Villa villa = new Villa();
 //        villa.setType(villaDTO.getType());

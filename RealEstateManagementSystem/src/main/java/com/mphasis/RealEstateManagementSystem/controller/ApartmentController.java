@@ -131,6 +131,14 @@ public class ApartmentController {
 		else
 			return new ResponseEntity<String>("Sorry No Apartments Exists.",HttpStatus.NOT_FOUND);
 	}
+	@GetMapping("/sold")
+	public ResponseEntity<?> getSoldApartments(@RequestParam("buyerId") int buyerId) {
+		List<Apartment> aprtList=aprtServ.getSoldApartments(buyerId);
+		if(!aprtList.isEmpty())
+			return new ResponseEntity<List<Apartment>>(aprtList,HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("Sorry No Apartments Exists.",HttpStatus.NOT_FOUND);
+	}
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getApartment(@PathVariable("id") int apartmentId) {
 		Apartment apartment=aprtServ.getApartment(apartmentId);

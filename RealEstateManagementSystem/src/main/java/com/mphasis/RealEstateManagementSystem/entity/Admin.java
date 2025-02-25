@@ -31,6 +31,7 @@ public class Admin {
 	public Admin() {
 		super();
 	}
+	
 	public Admin(int adminId, UserCommonDetails userComDet, List<Seller> sellerList,
 			List<PropertyManager> propManagerList, List<Buyer> buyerList, User user) {
 		super();
@@ -41,6 +42,7 @@ public class Admin {
 		this.buyerList = buyerList;
 		this.user = user;
 	}
+
 	public User getUser() {
 		return user;
 	}

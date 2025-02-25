@@ -101,6 +101,14 @@ public class PlotsController {
 		else
 			return new ResponseEntity<String>("Sorry No Plotss Exists.",HttpStatus.NOT_FOUND);
 	}
+	@GetMapping("/sold")
+	public ResponseEntity<?> getSoldPlots(@RequestParam("buyerId") int buyerId) {
+		List<Plots> plotList=plotServ.getSoldPlots(buyerId);
+		if(!plotList.isEmpty())
+			return new ResponseEntity<List<Plots>>(plotList,HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("Sorry No Plotss Exists.",HttpStatus.NOT_FOUND);
+	}
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getPlots(@PathVariable("id") int plotId) {
 		Plots plot=plotServ.getPlots(plotId);

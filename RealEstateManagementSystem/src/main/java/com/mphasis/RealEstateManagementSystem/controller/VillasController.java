@@ -97,6 +97,14 @@ public class VillasController {
 		else
 			return new ResponseEntity<String>("Sorry No IndividualHouses Exists.",HttpStatus.NOT_FOUND);
 	}
+	@GetMapping("/sold")
+	public ResponseEntity<?> getSoldVillas(@RequestParam("buyerId") int buyerId) {
+		List<Villa> individualList=villaService.getSoldVillas(buyerId);
+		if(!individualList.isEmpty())
+			return new ResponseEntity<List<Villa>>(individualList,HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("Sorry No IndividualHouses Exists.",HttpStatus.NOT_FOUND);
+	}
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getVilla(@PathVariable("id") int villaId) {
 		Villa villa=villaService.getIndividualHouse(villaId);

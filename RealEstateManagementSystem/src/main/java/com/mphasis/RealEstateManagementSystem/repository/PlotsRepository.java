@@ -22,6 +22,10 @@ public interface PlotsRepository extends JpaRepository<Plots, Integer> {
 	@Query("SELECT a FROM Plots a WHERE a.commPropDetails.soldStatus = 'unsold'")
 	List<Plots> getUnsoldPlots();
 	
+	@Query("SELECT a FROM Plots a WHERE a.buyer.buyerId=:buyerId AND a.commPropDetails.soldStatus = 'sold'")
+	List<Plots> getSoldPlots(@Param("buyerId") int buyerId);
+	
+	
 	@Query("SELECT v FROM Plots v WHERE :buyerId MEMBER OF v.favFor")
     List<Plots> getVillaByBuyerIdInFavFor(@Param("buyerId") int buyerId);
 	

@@ -25,6 +25,10 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Integer> {
 	@Query("SELECT a FROM Apartment a WHERE a.commPropDetails.soldStatus = 'unsold'")
 	List<Apartment> getUnsoldApartments();
 	
+	@Query("SELECT a FROM Apartment a WHERE a.buyer.buyerId=:buyerId AND a.commPropDetails.soldStatus = 'sold'")
+	List<Apartment> getSoldApartments(@Param("buyerId") int buyerId);
+	
+	
 	@Modifying
 	@Query("UPDATE Apartment a SET a.commPropDetails.soldStatus = 'sold', a.buyer = :buyer WHERE a.apartmentId = :apartmentId")
 	int updateApartmentSoldStatusAndBuyer(@Param("apartmentId") int apartmentId, @Param("buyer") Buyer buyer);
@@ -35,16 +39,4 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Integer> {
 	@Query("SELECT v FROM Apartment v WHERE :buyerId MEMBER OF v.viwedBy")
 	List<Apartment> getApartByBuyerIdInViewedBy(@Param("buyerId") int buyerId);
 	
-//	@Modifying
-//	@Query("UPDATE Apartment a SET a.buyerId = :buyerId WHERE a.apartmentId = :apartmentId")
-//	int updateBuyerForApartment(@Param("apartmentId") int apartmentId, @Param("buyerId") int buyerId);
-
-//	@Modifying
-//	@Query("UPDATE Apartment a SET a.favFor = :buyerId WHERE a.apartmentId = :apartmentId")
-//	int addBuyerToFavFor(@Param("apartmentId") int apartmentId, @Param("buyerId") int buyerId);
-//
-//	@Modifying
-//	@Query("UPDATE Apartment a SET a.viwedBy = :buyerId WHERE a.apartmentId = :apartmentId")
-//	int addBuyerToViewedBy(@Param("apartmentId") int apartmentId, @Param("buyerId") int buyerId);
-
 }

@@ -100,50 +100,10 @@ public class PlotsService {
 	public List<Plots> getUnsoldPlots(){
 		return plotsRepo.getUnsoldPlots();
 	}
+	public List<Plots> getSoldPlots(int buyerId){
+		return plotsRepo.getSoldPlots(buyerId);
+	}
 	
-	
-//	public Plots addPlots(PlotDTO plotDTO) {
-//        Plots plots = new Plots();
-//        plots.setAuthorityApproval(plotDTO.getAuthorityApproval());
-//        plots.setFloorsAllowed(plotDTO.getFloorsAllowed());
-//        plots.setNoOfOpenSides(plotDTO.getNoOfOpenSides());
-//        plots.setBoundaryWalls(plotDTO.getBoundaryWalls());
-//
-//        CommonPropertyDetailsDTO commonPropertyDetailsDTO = plotDTO.getCommonPropertyDetails();
-//        CommonPropertyDetails commonPropertyDetails = new CommonPropertyDetails();
-//
-//        commonPropertyDetails.setCarpetArea(commonPropertyDetailsDTO.getCarpetArea());
-//        commonPropertyDetails.setFacing(commonPropertyDetailsDTO.getFacing());
-//        commonPropertyDetails.setPrice(commonPropertyDetailsDTO.getPrice());
-//        commonPropertyDetails.setDescription(commonPropertyDetailsDTO.getDescription());
-//        commonPropertyDetails.setStatus(commonPropertyDetailsDTO.getStatus());
-//        commonPropertyDetails.setRegistrationCharges(commonPropertyDetailsDTO.getRegistrationCharges());
-//        commonPropertyDetails.setBookingAmount(commonPropertyDetailsDTO.getBookingAmount());
-//        commonPropertyDetails.setTransactionType(commonPropertyDetailsDTO.getTransactionType());
-//        commonPropertyDetails.setDeveloper(commonPropertyDetailsDTO.getDeveloper());
-//        commonPropertyDetails.setOverlooking(commonPropertyDetailsDTO.getOverlooking());
-//        commonPropertyDetails.setSoldStatus(commonPropertyDetailsDTO.getSoldStatus());
-//        commonPropertyDetails.setAddress(commonPropertyDetailsDTO.getAddress());
-//        List<ImageData> imageDataList = new ArrayList<>();
-//        for (MultipartFile file : commonPropertyDetailsDTO.getImages()) {
-//            ImageData imageData = new ImageData();
-//            try {
-//                imageData.setImageData(file.getBytes());
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                // Handle the exception
-//            }
-//            imageDataList.add(imageData);
-//        }
-//
-//        commonPropertyDetails.setImages(imageDataList);
-//        plots.setCommPropDetails(commonPropertyDetails);
-//        plots.setSeller(plotDTO.getSeller());
-//        plots.getSeller().setProperty_manager(plotDTO.getPropertyManager());
-//        plots.setBuyer(plotDTO.getBuyer());
-//
-//        return plotsRepo.save(plots);
-//    }
 	public Plots updatePlots(Plots plot) {
 		if(plotsRepo.existsById(plot.getPlotId()))
 			return plotsRepo.save(plot);

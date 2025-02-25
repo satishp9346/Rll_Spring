@@ -149,7 +149,9 @@ public class ApartmentService {
 	public List<Apartment> getUnsoldApartments(){
 		return apartRepo.getUnsoldApartments();
 	}
-
+	public List<Apartment> getSoldApartments(int buyerId){
+		return apartRepo.getSoldApartments(buyerId);
+	}
 	public Apartment updateApartment(Apartment apartment) {
 		if (apartRepo.existsById(apartment.getApartmentId()))
 			return apartRepo.save(apartment);

@@ -32,35 +32,6 @@ public class PropertyService {
     @Autowired
     private VillaRepository villaRepository;
 
-//    public CommonPropertyDetails addProperty(CommonPropertyDetails propertyDetails, String propertyType) {
-//        CommonPropertyDetails savedProperty = propertyRepository.save(propertyDetails);
-//
-//        switch (propertyType.toLowerCase()) {
-//            case "apartment":
-//                Apartment apartment = new Apartment();
-//                apartment.setCommPropDetails(savedProperty);
-//                apartmentRepository.save(apartment);
-//                break;
-//
-//            case "plot":
-//                Plots plot = new Plots();
-//                plot.setCommPropDetails(savedProperty);
-//                plotsRepository.save(plot);
-//                break;
-//
-//            case "villa":
-//                Villa villa = new Villa();
-//                villa.setCommPropDetails(savedProperty);
-//                villaRepository.save(villa);
-//                break;
-//
-//            default:
-//                throw new IllegalArgumentException("Invalid property type: " + propertyType);
-//        }
-//
-//        return savedProperty;
-//    }
-
     public List<?> getPropertyDetails(String propertyType) {
         switch (propertyType.toLowerCase()) {
             case "apartment":
